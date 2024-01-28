@@ -53,3 +53,5 @@ Todos:
     a. Depth range transferred from ControlBar to Image is correct; from Image (when scrolling) to Control is not.
 11. 
 a. what is dragPositionImage in html file? There is no difference when remove it.
+
+
