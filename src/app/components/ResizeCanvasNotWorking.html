@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .resize-horizontal {
+      background: #fcba03;
+      resize: horizontal;
+    }
+  </style>
+</head>
+<body>
+<canvas id="ellipse" style="display:block"></canvas>
+<div id="menu" class="resize-horizontal" style=" display:block;width:145px">
+  <img src="../../assets/SectionImage.jpg" style="resize: horizontal;width:124px;height:324px">
+
+  <p class="title">menu title</p>
+</div>
+<script>
+  // In response to resize, paint an ellipse inside a canvas
+  document.querySelector('#ellipse').handleResize = entry => {
+    entry.target.width = entry.borderBoxSize[0].inlineSize;
+    entry.target.height = entry.borderBoxSize[0].blockSize;
+    let rx = Math.floor(entry.target.width / 2);
+    let ry = Math.floor(entry.target.height / 2);
+    let ctx = entry.target.getContext('2d');
+    ctx.beginPath();
+    ctx.ellipse(rx, ry, rx, ry, 0, 0, 2 * Math.PI);
+    ctx.stroke();
+  }
+
+  // In response to resize, change title visibility depending on width
+  document.querySelector('#menu').handleResize = entry => {
+    let title = entry.target.querySelector('.title');
+    if (entry.borderBoxSize[0].inlineSize < 40)
+      title.style.display = 'none';
+    else
+      title.style.display = 'inline-block';
+  }
+
+  let ro = new ResizeObserver(entries => {
+    for (let entry of entries) {
+      let cs = window.getComputedStyle(entry.target);
+      console.log('watching element:', entry.target);
+      console.log(entry.contentRect.top, ' is ', cs.paddingTop);
+      console.log(entry.contentRect.left, ' is ', cs.paddingLeft);
+      console.log(entry.borderBoxSize[0].inlineSize, ' is ', cs.width);
+      console.log(entry.borderBoxSize[0].blockSize, ' is ', cs.height);
+      if (entry.target.handleResize)
+        entry.target.handleResize(entry);
+    }
+  });
+
+  ro.observe(document.querySelector('#ellipse'));
+  ro.observe(document.querySelector('#menu'));
+</script>
+</body>
+</html>

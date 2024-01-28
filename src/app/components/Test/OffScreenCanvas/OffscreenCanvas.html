@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OffscreenCanvas API</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div id="warning-support">
+    Oh! Looks like your browser does not support the OffscreenCanvas :(
+  </div>
+</header>
+
+<main>
+  <h1>OffscreenCanvas() API</h1>
+  <p>
+    This demo has been build to showcase the power of the OffscreenCanvas
+    API and Workers.<br />
+    To learn more about it, please check the origin blog post here.<br />
+    You can also check MDM for more complete information by
+    <a
+      href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/OffscreenCanvas"
+    >clicking here.</a
+    >
+  </p>
+  <h2>
+    Simulate a heavy process on :
+  </h2>
+
+  <button onclick="slowdown()">Canvas A</button>
+  <button onclick="slowdownWorker()">Canvas B</button>
+
+  <h2>
+    Visualisation:
+  </h2>
+  <div class="visualisation">
+    <div>
+      <span class="canvas-title">Canvas A</span>
+      <canvas id="canvas main" width="400" height="400"></canvas>
+    </div>
+    <div>
+      <span class="canvas-title">Canvas B</span>
+      <canvas id="canvas worker" width="400" height="400"></canvas>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>
+    Thanks for playing with this demo, you can remix it on glitch by
+    clicking
+    <a href="https://glitch.com/edit/#!/offscreencanvas-demo">here</a>
+  </p>
+</footer>
+
+<script>
+  //Check browser compatibility
+  document
+    .querySelector("#warning-support")
+    .classList.add(
+    "OffscreenCanvas" in window ? "supported" : "not-supported"
+  );
+  document.querySelector("#warning-support").innerHTML =
+    "OffscreenCanvas" in window
+      ? "Yay! your browser supports the OffscreenCanvas API "
+      : "Oh! Looks like your browser does not support the OffscreenCanvas :(";
+
+  //Init Canvas A (running on the current page)
+  var canvasA = document.getElementById("canvas main");
+  var ctxA = canvasA.getContext("2d");
+
+  // Setup the counter for Canvas A
+  var counter = 0;
+  setInterval(function() {
+    redrawCanvasA();
+    counter++;
+  }, 100);
+
+
+  // Redraw Canvas A text
+  function redrawCanvasA() {
+    ctxA.clearRect(0, 0, canvasA.width, canvasA.height);
+    ctxA.font = "16px Verdana";
+    ctxA.textAlign = "center";
+    ctxA.fillText(
+      "Counting: " + counter,
+      canvasA.width / 2,
+      canvasA.height / 2
+    );
+  }
+
+  // Using the OffscreenCanvas API and starting the worker
+  var cWorker = document.getElementById("canvas worker").transferControlToOffscreen();
+  var worker = new Worker("worker.js");
+  worker.postMessage({ canvas: cWorker }, [cWorker]);
+
+  // Magic function to slowdown the main thread.
+  function slowdown() {
+    for (let i = 0; i < 2000000000; i++) {}
+  }
+
+  // Initiate the slowing down of Canvas B
+  // By sending a message to the worker
+  function slowdownWorker() {
+    worker.postMessage("slowDown");
+  }
+</script>
+</body>
+</html>

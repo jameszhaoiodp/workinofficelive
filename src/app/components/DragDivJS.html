@@ -1,0 +1,71 @@
+<html>
+
+<!--https://www.youtube.com/watch?v=We-Og5peS3Y-->
+
+<head>
+  <style>
+    #box {
+      position: relative;
+      height: 50%;
+      width: 50%;
+      background: #000;
+      border-radius: 10px
+    }
+
+    #handler {
+      position: absolute;
+
+      width: 10px;
+      border: 1px solid #000;
+      background: #fff;
+      /*border-radius: 50%;*/
+      right: -10px;
+      top:0px;
+      height: 100%;
+      /*bottom: -5px;*/
+    }
+  </style>
+</head>
+
+<body onmouseup="mu()">
+<div id="box">
+  <div id="handler" onmousedown="md(event)" onmousemove="mm(event)"></div>
+</div>
+<script>
+  const box = document.querySelector('#box');
+  var drag = false;
+
+  var x, y, h, w;
+
+  function md(e) {
+    x = e.clientX;
+    y = e.clientY;
+
+    h = box.clientHeight;
+    w = box.clientWidth;
+
+    drag = true ;
+  }
+
+  function mm(e) {
+    console.log("move....");
+    if (drag == true) {
+      mx = e.clientX;
+      my = e.clientY;
+
+      cx = mx - x;
+      cy = my - y;
+
+      box.style.width = cx + w;
+      box.style.height = cy + h;
+    }
+  }
+
+  function mu(){
+    drag = false ;
+  }
+
+</script>
+</body>
+
+</html>

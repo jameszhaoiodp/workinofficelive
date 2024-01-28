@@ -1,0 +1,10 @@
+GET {{jrprod}}/limsM/SamplesGetExp-LIVE?filloutsamples=1&fillouttests=1&samplefilters=["s.original_sample=12819841","to_number(s.x_core)>=3","to_number(s.x_core)<=3","s.status='D'"]&testfilters=["test_number =130285481", "t.analysis='LSIMG'","t.status='D'","t.x_display='T'"]&resultfilters=["r.name='cropped_image_asman_id'"]&depthfilters=["d.scale_id=11311"]
+Accept: application/json
+
+### get site
+GET {{jrprod}}/reference/SitesGet-LIVE
+Accept: application/json
+
+### wrong
+GET {{jrhost}}/limsM/SamplesGetExp-LIVE?filloutsamples=1&fillouttests=1&samplefilters=["s.original_sample=12819841","to_number(s.x_core)>=3","to_number(s.x_core)<=3"]&testfilters=["test_number IN (SELECT max(test_number) From  result where original_sample=12819841)","t.analysis='SRM'","t.status='D'","t.x_display='T'"]&resultfilters=["r.name='declination_w_bkgrd_w_drift'"]&depthfilters=["d.scale_id=11311"]
+Accept: application/json

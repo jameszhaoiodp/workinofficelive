@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>Event Capture Demo</title>
+</head>
+<body>
+<h1>Event Capture Demo</h1>
+<article id="main">
+  <div id="parent" style="border: 2px solid brown; margin: 10px;">
+    <div id="child" style="border: 2px dashed green; margin: 10px;">
+      <p>This is a paragraph.</p>
+    </div>
+</article>
+</body>
+</html>
+
+<!--- event capture --->
+<script type="text/javascript">
+  var ancestor = document.getElementById("main");
+  var parent = document.getElementById("parent");
+  var child = document.getElementById("child");
+  ancestor.addEventListener("click", function(event){
+    console.log("main clicked");
+  });
+  parent.addEventListener("click", function(event){
+    console.log("parent clicked");
+  });
+  child.addEventListener("click", function(event){
+    console.log("child clicked");
+  });
+</script>

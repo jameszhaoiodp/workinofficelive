@@ -1,0 +1,75 @@
+.wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+}
+
+.item {
+  width: 200px;
+  height: 800px;
+  overflow: auto;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  /*width: 100%;*/
+  max-width: 100%;
+  min-width: 10%;
+  height: auto;
+}
+
+svg {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  /*width:fit-content;*/
+  /*height:fit-content;*/
+}
+
+image {
+  /*width: 100%;*/
+  max-width: 100%;
+  min-width: 10%;
+  height: auto;
+}
+
+
+.resize-vertical {
+  background: pink;
+  resize: vertical;
+}
+
+.resize-none {
+  background: #d7d7d7;
+  resize: none;
+}
+
+.resize {
+  background: orange;
+  resize: both;
+}
+
+.resize-horizontal {
+  background: #fcba03;
+  resize: horizontal;
+  /*overflow: hidden;*/
+}
+
+
+.resize-horizontal-svg1 {
+  background: #fcba03;
+  resize: horizontal;
+  max-width: 2300px;
+  min-width: 100px;
+  overflow: hidden;
+}
+.resize-horizontal-svg2 {
+  background: #fcba03;
+   width: 80px;
+  overflow: hidden;
+}
+

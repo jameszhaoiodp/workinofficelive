@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--https://stackoverflow.com/questions/50858790/svg-image-as-pattern-full-width-keep-ratio-->
+<!--working on the example-->
+<!--not working on Section Image-->
+<html>
+<head>
+
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024  800.4"
+     width="100%" height="100%">
+  <defs>
+    <pattern id="img4" patternContentUnits="objectBoundingBox" width="1" height="1">
+      <!--       working here-->
+      <image x="0" y="0" width="1" height="1" preserveAspectRatio="xMidYMid slice"
+             xlink:href="https://images.unsplash.com/photo-1520658402001-b5960f9a6059?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5670796b33630d3eff4b287840632a59&auto=format&fit=crop&w=1950&q=80"/>
+
+      <!--        not working here-->
+      <!--        <image x="0" y="0" width="1" height="1" preserveAspectRatio="xMidYMid slice"-->
+      <!--               xlink:href="https://web.iodp.tamu.edu/filesR/FileGet-LORE?recordid=49915321"/>-->
+
+      <!--        <image x="0" y="0" width="1" height="1" preserveAspectRatio="xMidYMid slice"-->
+      <!--               xlink:href="../../assets/SectionImage.jpg"/>-->
+
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="200" height="600" stroke="black" fill="url(#img4)"/>
+</svg>
+
+</body>
+
+</html>

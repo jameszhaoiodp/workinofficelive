@@ -1,0 +1,121 @@
+<html>
+<head>
+</head>
+<style>
+  .wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+  }
+
+  p {
+    width: 200px;
+    height: 800px;
+    overflow: auto;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    /*width: 100%;*/
+    max-width: 100%;
+    min-width: 10%;
+    height: auto;
+  }
+
+  svg {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    /*width:fit-content;*/
+    /*height:fit-content;*/
+  }
+
+  image {
+    /*width: 100%;*/
+    max-width: 100%;
+    min-width: 10%;
+    height: auto;
+  }
+
+
+  .resize-vertical {
+    background: pink;
+    resize: vertical;
+  }
+
+  .resize-none {
+    background: #d7d7d7;
+    resize: none;
+  }
+
+  .resize {
+    background: orange;
+    resize: both;
+  }
+
+  .resize-horizontal {
+    background: #fcba03;
+    resize: horizontal;
+    /*overflow: hidden;*/
+  }
+
+
+  .resize-horizontal-svg {
+    background: #fcba03;
+    resize: horizontal;
+    max-width: 2300px;
+    overflow: hidden;
+  }
+</style>
+<body>
+<div class="wrapper">
+  <p style="width: 80px" class="resize-horizontal-svg"   >
+    <svg style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+      <image href="../../assets/SectionImage.jpg" width="100%" preserveAspectRatio="xMinYMin slice"/>
+    </svg>
+  </p>
+  <p style="width: 40px" class="resize-none" id="resize-horizontal2">
+    <svg style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+    </svg>
+  </p>
+
+  <p class="resize-horizontal-svg" id="resize-horizontal-svg" >
+    <svg style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+      <image href="../../assets/SectionImage.jpg" width="100%" preserveAspectRatio="xMinYMin slice"/>
+    </svg>
+  </p>
+
+  <p class="resize-horizontal" id="resize-horizontal">
+    resize: horizontal
+  </p>
+</div>
+
+<!--  <p class="resize-horizontal">-->
+<!--    <p>not working well</p>-->
+<!--    <img src="../../assets/SectionImage.jpg">-->
+<!--  </p>-->
+
+  <!--https://stackblitz.com/edit/angular-resize-observer?file=src%2Fapp%2Fresize-observer.directive.ts-->
+
+  <script>
+
+    // let horizontal = document.getElementById("resize-horizontal")
+    // new ResizeObserver(outputsize).observe(horizontal);
+    new ResizeObserver(outputsize).observe((document.querySelector('#resize-horizontal-svg')));
+
+
+    function outputsize() {
+      console.log('aa');
+      let horizontal = document.getElementById("resize-horizontal-svg")
+      let width = horizontal.offsetWidth
+      let height = horizontal.offsetHeight
+      console.log(width, height);
+    }
+
+  </script>
+</body>
+</html>

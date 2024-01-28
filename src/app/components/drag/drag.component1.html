@@ -1,0 +1,18 @@
+
+<svg class="target-area  " #target style="border: 1px solid black;"  style="border: 1px solid black;"  >
+  <image
+    [style.background-color]="rgb"
+    cdkDrag
+    cdkDragLockAxis="y"
+    (cdkDragEnded)="dragEnd($event)"
+
+    appIntersectionObserver
+    [root]="target"
+    [continuous]="true"
+    (intersectionRatio)="onIntersectionRatioChange($event)"
+
+    href="../../assets/SectionImage.jpg" height="29924" width="1357"/>
+</svg>
+
+
+

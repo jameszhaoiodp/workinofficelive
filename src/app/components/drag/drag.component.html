@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <p  class="item resize-horizontal-svg2"   >
+    <svg style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+      <image href="../../assets/SectionImage.jpg" width="100%" preserveAspectRatio="xMinYMin slice"/>
+    </svg>
+  </p>
+
+  <p style="width: 40px" class="item resize-none" id="resize-horizontal2">
+    <svg style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+    </svg>
+  </p>
+
+  <p class="item resize-horizontal-svg1" id="resize-horizontal-svg" >
+    <svg style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg" class="target-area  " #target >
+      <image
+        cdkDrag
+        cdkDragLockAxis="y"
+        (cdkDragEnded)="dragEnd($event)"
+        appIntersectionObserver
+        [root]="target"
+        [continuous]="true"
+        (intersectionRatio)="onIntersectionRatioChange($event)"
+        href="../../assets/SectionImage.jpg" width="100%" preserveAspectRatio="xMinYMin slice"/>
+    </svg>
+  </p>
+
+  <p class="item resize-horizontal" id="resize-horizontal">
+    resize: horizontal
+  </p>
+</div>

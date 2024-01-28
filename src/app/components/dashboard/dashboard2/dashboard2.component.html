@@ -1,0 +1,102 @@
+<div class="root">
+  <div class="header">
+    <h3>This is Demo from dashboard2</h3>
+    <ul class="nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Login</a></li>
+    </ul>
+  </div>
+  <div class="header2">
+    <h4>Just a better seating chart demo</h4>
+    <ul class="nav">
+      <!--      a. by default, the very top is the section top.-->
+      <!--      b. default top can be manually changed.-->
+      <!--      c. click on bottom creates a new interval-->
+      <li><a href="#">Add</a></li>
+
+      <!--      select the line, and move the interval.  This process will affect two intervals, top of the line, and bottom of the line.-->
+      <li><a href="#">Move</a></li>
+
+      <!--      "Delete" interval (the line) merges the bottom of the interval to the top.-->
+      <li><a href="#">Delete</a></li>
+      <!--      select the gap: trigger the selection to lithology and other attributes-->
+      <li><a href="#">Select Interval_I</a></li>
+    </ul>
+  </div>
+  <!--  <div class="holygrail-body">-->
+  <!--  give width = 40, compute height = ?-->
+  <div class="content">
+    <p class="item resize-horizontal-svg2" id="scroll_bar">
+      <!--      <svg style="width:100%; height: 100%;  " xmlns="http://www.w3.org/2000/svg"  attr.viewBox="0 0 40 882" preserveAspectRatio="none"   >-->
+      <svg style="width:100%; height: 100%;  " xmlns="http://www.w3.org/2000/svg"   attr.viewBox="0 0 40 {{barHeight}}" preserveAspectRatio="none"   >
+        <image href="../../../../assets/SectionImage.jpg" width="100%" height="100%" id="scrollbar_image" />
+
+        <!--          <line x1="0" y1="20" x2="40" y2="20" style="stroke: red;"/>-->
+        <!--          <line x1="0" y1="120" x2="40" y2="120" style="stroke: red;"/>-->
+
+
+        <rect x="0px"  y="0px" width="40px" attr.height='{{scrollBarHeight}}px' [cdkDragFreeDragPosition]="dragPositionBar"  style="fill: white; fill-opacity: .1; stroke: red; stroke-width: 1; "
+              cdkDrag
+              cdkDragLockAxis="y"
+              (cdkDragEnded)="dropEndBar($event)"
+              (cdkDragMoved)="dragMoveBar($event)"
+        />
+      </svg>
+
+    </p>
+
+    <p class="item resize-none"  style="width: 40px; color: black" id="resize-horizontal2">
+      <!--      <svg   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 11379"    width="100%" height="100%">-->
+      <!--        <defs>-->
+      <!--          <pattern id="img4" patternContentUnits="objectBoundingBox" width="1" height="1">-->
+      <!--            <image x="0" y="0" width="1" height="1" preserveAspectRatio="xMidYMid slice"-->
+      <!--                   xlink:href="../../assets/SectionImage.jpg"/>-->
+      <!--          </pattern>-->
+      <!--        </defs>-->
+
+      <!--        <rect x="0" y="0" width="100%" height="100%" stroke="black" fill="url(#img4)"   />-->
+      <!--      </svg>-->
+    </p>
+
+    <p class="item resize-horizontal-svg1" id="resize-horizontal-svg">
+      <svg id="imageSVG" style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg" class="target-area" #target (mouseup)="onMouseUpSVG($event)">
+        <image
+
+          id = "imageId"
+          cdkDrag
+          cdkDragLockAxis="y"
+          (cdkDragEnded)="dragEnd($event)"
+          (cdkDragMoved)="dragMoved($event)"
+
+          (keydown)="handleKeyDown($event)"
+          (mouseup)="onMouseUp($event)"
+          (load)="onImageLoad()"
+          [cdkDragFreeDragPosition]="dragPositionImage"
+          [cdkDragDisabled] = "cdkDragDisabled_image"
+
+
+
+          href="../../../../assets/SectionImage.jpg" width="100%" preserveAspectRatio="xMinYMin slice"
+        />
+        <line x1="0" y1="200" attr.x2="{{imageWidth}}" y2="200" cdkDrag   cdkDragLockAxis="y"  [cdkDragDisabled] = "cdkDragDisabled_interval" (cdkDragEnded)="dragLineEnd($event)" (cdkDragMoved)="dragLineMoved($event)" style="stroke:rgb(255,0,0);stroke-width:3" />
+        <line x1="0" y1="300" attr.x2="{{imageWidth}}" y2="300" cdkDrag   cdkDragLockAxis="y"  [cdkDragDisabled] = "cdkDragDisabled_interval" style="stroke:rgb(255,0,0);stroke-width:3" />
+      </svg>
+    </p>
+    <p style="width: 40px" class="item resize-none" >
+      <svg style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+      </svg>
+    </p>
+    <!--    <p class="item resize-horizontal" id="resize-horizontal">-->
+    <!--      resize: horizontal-->
+    <!--    </p>-->
+    <!--    </div>-->
+    <!--    <div class="asideLeft">Aside</div>-->
+
+    <!--    <div class="asideRight">Aside</div>-->
+  </div>
+  <div class="footer">
+    <h5>this is footer.</h5>
+
+  </div>
+</div>
